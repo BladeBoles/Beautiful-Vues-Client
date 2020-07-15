@@ -73,6 +73,3 @@ https://wearetechwomen.com/inspirational-quotes-ada-lovelace-the-first-computer-
 ## Styling
 
 Dark, minimalist and groovy
-
-#### NASA_API_KEY
-h81HqKGuy1wvQ7L6q6YK4oprNtmsniCAvNoYEmyt
