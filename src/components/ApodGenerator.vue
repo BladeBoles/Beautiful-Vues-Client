@@ -136,6 +136,7 @@ export default {
     width: 350px;
     height: 140px;
     margin-top: 0;
+    max-width: 90vw;
   }
 
   .quote-text {
@@ -149,6 +150,7 @@ export default {
   .click-image {
     margin-top: 0.2em;
     font-size: 0.7em;
+    text-align:center;
   }
 
   .warning {

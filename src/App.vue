@@ -68,7 +68,8 @@ export default {
  }
 
  p {
-   max-width: 400px;
+   width: 400px;
+   max-width: 95vw;
  }
 
  .view-favorites-button, .beauty-generation-button {
