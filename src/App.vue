@@ -2,21 +2,21 @@
   <div id="app">
     <button v-on:click="toggle='character-viewer'; getCharacters()">View all characters</button>
     <button v-on:click="toggle='character-creator'">Create a character</button>
-    <CharacterViewer v-show="toggle==='character-viewer'" :characters="characters" />
-    <CharacterCreator v-show="toggle==='character-creator'" />
+    <ApodFavorites v-show="toggle==='character-viewer'" :characters="characters" />
+    <ApodGenerator v-show="toggle==='character-creator'" />
   </div>
 </template>
 
 <script>
-import CharacterViewer from './components/CharacterViewer.vue'
-import CharacterCreator from './components/CharacterCreator.vue'
+import ApodFavorites from './components/ApodFavorites.vue'
+import ApodGenerator from './components/ApodGenerator.vue'
 import axios from "axios"
 
 export default {
   name: 'App',
   components: {
-    CharacterViewer,
-    CharacterCreator
+    ApodFavorites,
+    ApodGenerator
   },
   data: function() {
     return {

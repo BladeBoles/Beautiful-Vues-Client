@@ -1,17 +1,17 @@
 <template>
   <div class="character-view">
     <h1>Character Viewer</h1>
-    <p v-for="(character, index) in characters" v-bind:key="index">
+    <!-- <p v-for="(character, index) in characters" v-bind:key="index">
       {{ character.name }} is a {{ character.profession }}.
-    </p>
+    </p> -->
   </div>
 </template>
 
 <script>
   export default {
-    name: 'CharacterViewer',
+    name: 'ApodFavorites',
     props: {
-      characters: Array
+      favorites: Array
     }
   }
 
