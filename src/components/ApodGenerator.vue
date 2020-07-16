@@ -1,20 +1,8 @@
 <template>
   <div class="apod-creator">
-    <h1>Beautiful Vues</h1>
-  
-    <label for="apod-date">Choose a date: </label>
-    <input type="date" id="apod-date" v-model="currentDate"
-            value="2020-07-14" min="1995-06-15"
-            max="2020-07-15"> 
-
-    <br /> <br />
-    <button v-on:click="getApod()">Generate Beauty</button>
-    <button v-on:click="getQuote()">Generate Inspiration</button>
-  
-    <blockquote class="quote-section">
-      <p class="quote-text">{{ this.currentQuote.quote }}</p>
-      <footer class="quote-author">{{ this.currentQuote.author }}</footer>
-    </blockquote>
+    <div class="generation-button-container">
+      
+    </div>
 
     <a :href="currentImage.hdurl" target="_blank">
       <img :src="currentImage.url" 
@@ -24,8 +12,23 @@
 
     <p class="click-image">(Click for high res version in new tab.)</p>
 
-    <button v-on:click="makeFavorite()">Add to favorites</button>
+    <label class="date-label" for="apod-date">Choose a date: </label>
+    <input class="date-input" type="date" id="apod-date" v-model="currentDate"
+            value="2020-07-14" min="1995-06-15"
+            max="2020-07-15"> 
 
+    <button class="beauty-button" v-on:click="getApod()">Generate Beauty</button>
+
+    <blockquote class="quote-section">
+      <p class="quote-text">"{{ this.currentQuote.quote }}"</p>
+      <footer class="quote-author">{{ this.currentQuote.author }}</footer>
+    </blockquote>
+
+    <div class="inspire-favorite-buttons">
+      <button class="inspiration-button" v-on:click="getQuote()">Generate Inspiration</button>
+      <button v-on:click="makeFavorite()">Add to favorites</button>
+    </div>
+    <p class="explanation-label">Image Explanation: </p>
     <p class="apod-explanation">{{ this.currentImage.explanation }}</p>
 
     <p class="warning">
@@ -58,8 +61,8 @@ export default {
       },
       currentDate: "2020-07-15",
       currentQuote: {
-        quote: "",
-        author: ""
+        quote: "Everything we do impacts someone else's life.",
+        author: "Nicolas Cage"
       },
       currentFavorite: {
         quote: "",
@@ -76,7 +79,7 @@ export default {
     },
     getQuote: function () {
       axios
-        .get(`http://localhost:3000/quotes`)
+        .get(`https://polar-ridge-16440.herokuapp.com/quotes`)
         .then(res => this.currentQuote = res.data)
         .then(() => console.log(this.currentQuote))
     },
@@ -87,7 +90,7 @@ export default {
         image: this.currentImage.url
       }
       axios
-        .post(`http://localhost:3000/favorites`, {
+        .post(`https://polar-ridge-16440.herokuapp.com/favorites`, {
           quote: this.currentQuote.quote,
           author: this.currentQuote.author,
           image: this.currentImage.url
@@ -106,7 +109,57 @@ export default {
   }
 
   .apod-image {
-    max-height: 80vh;
+    max-height: 60vh;
     max-width: 90vw;
+    border: 3px solid gray;
+    border-radius: 0.1em;
   }
+
+  .generation-button-container {
+    display: flex;
+    flex-direction: row;
+    width: 60vw;
+    justify-content: space-between;
+  }
+
+  .date-label {
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+  }
+
+  .date-input {
+    margin-bottom: 1em;
+    font-size: 1.5em;
+  }
+
+  .quote-section {
+    width: 350px;
+    height: 140px;
+    margin-top: 0;
+  }
+
+  .quote-text {
+    font-style: italic;
+  }
+
+  .explanation-label {
+    font-weight: bold;
+  }
+
+  .click-image {
+    margin-top: 0.2em;
+    font-size: 0.7em;
+  }
+
+  .warning {
+    font-size: 0.8em;
+    color: rgb(71, 4, 4);
+  }
+
+  .inspire-favorite-buttons {
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+  }
+
 </style>
