@@ -1,6 +1,6 @@
 <template>
   <div class="apod-creator">
-    <h1>Astronomy Picture of the Day</h1>
+    <h1>Beautiful Vues</h1>
   
     <label for="apod-date">Choose a date: </label>
     <input type="date" id="apod-date" v-model="currentDate"
@@ -17,14 +17,20 @@
     </blockquote>
 
     <a :href="currentImage.hdurl" target="_blank">
-      <img :src="currentImage.url" alt="nic cage" class="apod-image">
+      <img :src="currentImage.url" 
+            alt="Sorry, an image could not be fetched for this date.  Pleas try another." 
+            class="apod-image">
     </a>
+
+    <p class="click-image">(Click for high res version in new tab.)</p>
+
+    <button v-on:click="makeFavorite()">Add to favorites</button>
 
     <p class="apod-explanation">{{ this.currentImage.explanation }}</p>
 
     <p class="warning">
-      Warning!  Side effects of simultaneously consuming beautiful pictures
-      of the universe and inspirational quotes from STEM figures 
+      Warning!  Side effects of simultaneously consuming beautiful
+      astronomical pictures and inspirational quotes from STEM figures 
       include:  the desire to learn more about science, a sense of 
       being one with the universe, and joyful crying.
     </p>
@@ -55,7 +61,11 @@ export default {
         quote: "",
         author: ""
       },
-      wantsQuote: false
+      currentFavorite: {
+        quote: "",
+        author: "",
+        image: ""
+      }
     }
   },
   methods: {
@@ -70,8 +80,18 @@ export default {
         .then(res => this.currentQuote = res.data)
         .then(() => console.log(this.currentQuote))
     },
-    toggleQuote: function () {
-      this.wantsQuote
+    makeFavorite: function () {
+      this.currentFavorite = {
+        quote: this.currentQuote.quote,
+        author: this.currentQuote.author,
+        image: this.currentImage.url
+      }
+      axios
+        .post(`http://localhost:3000/favorites`, {
+          quote: this.currentQuote.quote,
+          author: this.currentQuote.author,
+          image: this.currentImage.url
+        })
     }
   }
 }

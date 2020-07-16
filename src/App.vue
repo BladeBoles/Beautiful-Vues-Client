@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <button v-on:click="toggle='character-viewer'; getCharacters()">View all characters</button>
-    <button v-on:click="toggle='character-creator'">Create a character</button>
-    <ApodFavorites v-show="toggle==='character-viewer'" :characters="characters" />
-    <ApodGenerator v-show="toggle==='character-creator'" />
+    <button v-on:click="toggle='favorites-viewer'; getFavorites()">My Favorites</button>
+    <button v-on:click="toggle='favorites-creator'">Beauty Generation</button>
+    <ApodFavorites v-show="toggle==='favorites-viewer'" :favorites="favorites" />
+    <ApodGenerator v-show="toggle==='favorites-creator'" />
   </div>
 </template>
 
@@ -20,19 +20,19 @@ export default {
   },
   data: function() {
     return {
-      toggle: "character-viewer",
-      characters: null  
+      toggle: "favorites-creator",
+      favorites: null  
     }  
   },
   methods: {
-    getCharacters: function () {
+    getFavorites: function () {
       axios
-        .get('http://localhost:3000/characters')
-        .then(response => (this.characters = response.data))
+        .get('http://localhost:3000/favorites')
+        .then(response => (this.favorites = response.data))
     }
   },
   mounted: function () {
-    this.getCharacters();
+    this.getFavorites();
   }
 }
 </script>

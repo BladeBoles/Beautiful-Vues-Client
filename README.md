@@ -10,7 +10,7 @@ Built with the MEVN stack in <36 hours by Blade Boles, who had never seen Vue or
 
 2. I have the option to include a random inspirational quote from a STEM figure
 
-3. (Stretch) Once my quote and image are generated, I have the option to "favorite" up to 3/5/10 (some reasonable number) of them
+3. Once my quote and image are generated, I have the option to add them to a list of favorites.
 
 4. (Stretch) I can add notes to my favorites or delete them
 

@@ -1,9 +1,16 @@
 <template>
   <div class="character-view">
     <h1>Character Viewer</h1>
-    <!-- <p v-for="(character, index) in characters" v-bind:key="index">
-      {{ character.name }} is a {{ character.profession }}.
-    </p> -->
+    <blockquote v-for="(favorite, index) in favorites" v-bind:key="index">
+      <h2>{{index + 1}}.)</h2>
+      <img :src="favorite.image" alt="beauty" width=200>
+      <p>
+        {{ favorite.quote }}
+      </p>
+      <footer>
+        {{ favorite.author }}
+      </footer>
+    </blockquote>
   </div>
 </template>
 
