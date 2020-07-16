@@ -1,20 +1,33 @@
 <template>
   <div class="apod-creator">
-    <h1>Astronomy Picture of the Day Creator</h1>
-    
+    <h1>Astronomy Picture of the Day</h1>
+  
     <label for="apod-date">Choose a date: </label>
     <input type="date" id="apod-date" v-model="currentDate"
             value="2020-07-14" min="1995-06-15"
             max="2020-07-15"> 
 
     <br /> <br />
-    <button v-on:click="getApod">Create apod</button>
+    <button v-on:click="getApod()">Generate Beauty</button>
+    <button v-on:click="getQuote()">Generate Inspiration</button>
+  
+    <blockquote class="quote-section">
+      <p class="quote-text">{{ this.currentQuote.quote }}</p>
+      <footer class="quote-author">{{ this.currentQuote.author }}</footer>
+    </blockquote>
 
     <a :href="currentImage.hdurl" target="_blank">
       <img :src="currentImage.url" alt="nic cage" class="apod-image">
     </a>
 
     <p class="apod-explanation">{{ this.currentImage.explanation }}</p>
+
+    <p class="warning">
+      Warning!  Side effects of simultaneously consuming beautiful pictures
+      of the universe and inspirational quotes from STEM figures 
+      include:  the desire to learn more about science, a sense of 
+      being one with the universe, and joyful crying.
+    </p>
   </div>
 </template>
 
@@ -31,12 +44,18 @@ export default {
         hdurl: "https://www.placecage.com/500/500",
         explanation: `Although this placeholder image of 
           Nicolas Cage is surely glorious, choose a date between
-          June 16, 1995 and July 15, 2020 to see something even
+          June 16, 1995 and July 15, 2020 and click the
+          button "Generate Beauty" to see something even
           more beautiful - NASA's Astronomy Picture of the Day
           for that date.  If you would like an inspirational quote
-          from a STEM figure to go along with it, check the box!`
+          from a STEM figure to go along with it, click "Generate Inspiration." `
       },
-      currentDate: "2020-07-15"
+      currentDate: "2020-07-15",
+      currentQuote: {
+        quote: "",
+        author: ""
+      },
+      wantsQuote: false
     }
   },
   methods: {
@@ -44,7 +63,15 @@ export default {
       axios
         .get(`https://api.nasa.gov/planetary/apod?api_key=${process.env.VUE_APP_KEY}&date=${this.currentDate}`)
         .then(res => this.currentImage = res.data)
-        .then(() => console.log(this.currentImage))
+    },
+    getQuote: function () {
+      axios
+        .get(`http://localhost:3000/quotes`)
+        .then(res => this.currentQuote = res.data)
+        .then(() => console.log(this.currentQuote))
+    },
+    toggleQuote: function () {
+      this.wantsQuote
     }
   }
 }
