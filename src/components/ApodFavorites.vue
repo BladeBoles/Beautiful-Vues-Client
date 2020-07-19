@@ -1,48 +1,65 @@
 <template>
   <div class="character-view">
-    <blockquote class="favorite-quote" v-for="(favorite, index) in favorites" v-bind:key="index">
-      <h2># {{index + 1}}</h2>
-      <img class="favorite-image" :src="favorite.image" alt="beauty">
-      <p class="quote-text">
-        {{ favorite.quote }}
-      </p>
-      <footer>
-        {{ favorite.author }}
-      </footer>
+    <blockquote
+      class="favorite-quote"
+      v-for="(favorite, index) in this.$store.state.favorites"
+      v-bind:key="index"
+    >
+      <h2>Favorite #{{index + 1}}</h2>
+      <img class="favorite-image" :src="favorite.image" alt="beauty" />
+      <p class="quote-text">{{ favorite.quote }}</p>
+      <footer>{{ favorite.author }}</footer>
+      <button class="delete-button" v-on:click="deleteFavorite(favorite.id)">Remove this favorite</button>
     </blockquote>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'ApodFavorites',
-    props: {
-      favorites: Array
+import ApodService from "../services/ApodService";
+export default {
+  name: "ApodFavorites",
+  data: function() {
+    return {
+      testFav: "test favorite"
+    };
+  },
+  methods: {
+    deleteFavorite: function(id) {
+      ApodService.deleteFavorite(id)
+        .then(response => console.log(response))
+        .catch(error => console.log("There was an error: ", error));
     }
+  },
+  mounted() {
+    this.$store.dispatch("fetchFavorites");
   }
-
-
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .favorite-quote {
-    max-width: 90vw;
-  }
+.delete-button {
+  margin-top: 10px;
+}
+.delete-button:hover {
+  text-decoration-color: #fc3d21;
+}
+.favorite-quote {
+  max-width: 90vw;
+}
 
-  .character-view {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.character-view {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
-  img {
-    max-height: 50vh;
-    max-width: 90vw;
-  }
+img {
+  max-height: 50vh;
+  max-width: 90vw;
+}
 
-  .quote-text {
-    font-style: italic;
-    
-  }
+.quote-text {
+  font-style: italic;
+}
 </style>

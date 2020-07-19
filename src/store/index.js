@@ -11,14 +11,17 @@ const store = new Vuex.Store({
       url: "https://www.placecage.com/500/500",
       hdurl: "https://www.placecage.com/500/500",
       explanation: `Although this placeholder image of 
-        Nicolas Cage is surely glorious, choose a date between
+        Nic Cage is surely glorious, choose a date between
         June 16, 1995 and July 15, 2020 and click the
         button "Generate Beauty" to see something even
         more beautiful - NASA's Astronomy Picture of the Day
         for that date.  If you would like an inspirational quote
         from a STEM figure to go along with it, click "Generate Inspiration." `
     },
-    currentQuote: {}
+    currentQuote: {
+      quote: "Everything we do impacts someone else's life.",
+      author: "Nicolas Cage"
+    }
   },
   mutations: {
     SET_FAVORITES(state, favorites) {
@@ -33,7 +36,7 @@ const store = new Vuex.Store({
   },
   actions: {
     fetchFavorites({ commit }) {
-      return ApodService.getFavorites
+      return ApodService.getFavorites()
         .then(response => {
           commit('SET_FAVORITES', response.data)
         })
