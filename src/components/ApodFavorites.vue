@@ -9,7 +9,10 @@
       <img class="favorite-image" :src="favorite.image" alt="beauty" />
       <p class="quote-text">{{ favorite.quote }}</p>
       <footer>{{ favorite.author }}</footer>
-      <button class="delete-button" v-on:click="deleteFavorite(favorite.id)">Remove this favorite</button>
+      <button
+        class="delete-button"
+        v-on:click="deleteFavorite(favorite._id, index)"
+      >Remove this favorite</button>
     </blockquote>
   </div>
 </template>
@@ -24,9 +27,11 @@ export default {
     };
   },
   methods: {
-    deleteFavorite: function(id) {
-      ApodService.deleteFavorite(id)
+    deleteFavorite: async function(id) {
+      console.log(id);
+      await ApodService.deleteFavorite(id)
         .then(response => console.log(response))
+        .then(() => this.$store.dispatch("fetchFavorites"))
         .catch(error => console.log("There was an error: ", error));
     }
   },

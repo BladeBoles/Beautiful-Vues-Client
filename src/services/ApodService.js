@@ -1,8 +1,13 @@
 import axios from 'axios'
 
 const apiClient = axios.create({
-  baseURL: 'https://polar-ridge-16440.herokuapp.com',
-  withCredentials: false
+  // baseURL: 'https://polar-ridge-16440.herokuapp.com',
+  baseURL: 'http://localhost:3000',
+  withCredentials: false,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  }
 })
 
 const nasaClient = axios.create({
@@ -37,10 +42,9 @@ export default {
       .get('/quotes')
   },
   deleteFavorite(id) {
+    console.log(id)
     return apiClient
-      .delete('/favorites', {
-        id
-      })
+      .delete(`/favorites/${id}`)
   }
   // TODO: deleteFavorite(), modifyFavorite()
 
