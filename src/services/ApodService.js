@@ -10,18 +10,14 @@ const apiClient = axios.create({
 })
 
 const nasaClient = axios.create({
-  baseURL: `https://api.nasa.gov/planetary/apod?api_key=${process.env.VUE_APP_KEY}&date=${this.currentDate}`,
-  withCredentials: false,
-  headers: {
-    Accept: 'application/json',
-    'Content-Type:': 'application/json'
-  }
+  baseURL: `https://api.nasa.gov/planetary/`,
+  withCredentials: false
 })
 
 export default {
-  getApod() {
+  getApod(date) {
     return nasaClient
-      .get('/')
+      .get(`/apod?api_key=${process.env.VUE_APP_KEY}&date=${date}`)
   },
   getFavorites() {
     return apiClient
@@ -40,9 +36,10 @@ export default {
         image: currentFavorite.url
       })
   },
-  getQuotes() {
+  getQuote() {
     return apiClient
       .get('/quotes')
   }
+  // TODO: deleteFavorite(), modifyFavorite()
 
 }
