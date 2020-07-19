@@ -3,9 +3,9 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-export const store = new Vuex.Store({
+const store = new Vuex.Store({
   state: {
-
+    favorites: []
   },
   mutations: {
 
@@ -17,3 +17,5 @@ export const store = new Vuex.Store({
 
   }
 });
+
+export default store

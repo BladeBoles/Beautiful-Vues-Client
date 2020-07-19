@@ -4,8 +4,8 @@
       <router-link :to="{name: 'generator'}">Beautiful Vues</router-link>
     </h1>
     <nav>
-      <router-link :to="{ name: 'generator'}">Generation Page</router-link>|
-      <router-link :to="{ name: 'favorites'}">Favorites Page</router-link>
+      <router-link :to="{ name: 'favorites'}">Favorites Page</router-link>|
+      <router-link :to="{ name: 'generator'}">Generation Page</router-link>
     </nav>
   </div>
 </template>

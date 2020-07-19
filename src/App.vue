@@ -7,7 +7,6 @@
 
 <script>
 import NavBar from "@/components/NavBar.vue";
-import axios from "axios";
 
 export default {
   name: "App",
@@ -19,16 +18,6 @@ export default {
       toggle: "favorites-creator",
       favorites: null
     };
-  },
-  methods: {
-    getFavorites: function() {
-      axios
-        .get("https://polar-ridge-16440.herokuapp.com/favorites")
-        .then(response => (this.favorites = response.data));
-    }
-  },
-  mounted: function() {
-    this.getFavorites();
   }
 };
 </script>
