@@ -12,7 +12,8 @@ const router = new VueRouter({
     {
       path: '/generator',
       name: 'generator',
-      component: ApodGenerator
+      component: ApodGenerator,
+      alias: '/'
     },
     {
       path: '/favorites',
