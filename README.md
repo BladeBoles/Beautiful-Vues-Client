@@ -2,7 +2,10 @@
 
 Use NASA's astronomy picture of the day API to generate a beautiful picture with its description, along with an optional inspirational quote from a STEM figure.  Save your favorites and add your own thoughts!
 
-Built with the MEVN stack in <36 hours by Blade Boles, who had never seen Vue or MongoDB until this Monday.
+* Originaly built with the MEVN stack in <36 hours by Blade Boles, who had never seen Vue or MongoDB until the previous Monday.*
+
+Update (07/19/20): Did some tutorials on vuex and vue router over the last 2 days.  Implemented what I learned with some basic routing and a store (with vuex).  Added the ability to remove favorites.  App is organized (although still very simple) more like a production app on the front end.
+
 
 ## User Stories:
 
