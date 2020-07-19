@@ -6,6 +6,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
+    submittedFavorite: false,
     favorites: [],
     currentImage: {
       url: "https://www.placecage.com/500/500",
@@ -32,6 +33,9 @@ const store = new Vuex.Store({
     },
     SET_IMAGE(state, image) {
       state.currentImage = image;
+    },
+    SET_SUBMITTED_FAVORITE(state) {
+      state.submittedFavorite = !state.submittedFavorite;
     }
   },
   actions: {
@@ -53,11 +57,17 @@ const store = new Vuex.Store({
         .then(response => {
           commit('SET_IMAGE', response.data)
         })
+    },
+    toggleSubmitted({ commit }) {
+      commit('SET_SUBMITTED_FAVORITE')
+      setTimeout(function () { commit('SET_SUBMITTED_FAVORITE') }, 3000)
     }
 
   },
   getters: {
-
+    favoriteSubmitted: state => {
+      return state.submittedFavorite
+    }
   }
 });
 

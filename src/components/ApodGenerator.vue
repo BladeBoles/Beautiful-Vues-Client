@@ -34,6 +34,7 @@
       <button class="inspiration-button" v-on:click="generateInspiration()">Generate Inspiration</button>
       <button v-on:click="makeFavorite()">Add to favorites</button>
     </div>
+    <p class="submitted-message" v-show="this.favoriteSubmitted">Submitted new favorite!</p>
     <p class="explanation-label">Image Explanation:</p>
     <p class="apod-explanation">{{ this.$store.state.currentImage.explanation }}</p>
 
@@ -66,7 +67,7 @@ export default {
       this.$store.dispatch("fetchQuote");
     },
     makeFavorite: function() {
-      console.log(this.$store);
+      this.$store.dispatch("toggleSubmitted");
       this.currentFavorite = {
         quote: this.$store.state.currentQuote.quote,
         author: this.$store.state.currentQuote.author,
@@ -77,12 +78,21 @@ export default {
         this.currentFavorite
       );
     }
+  },
+  computed: {
+    favoriteSubmitted() {
+      return this.$store.getters.favoriteSubmitted;
+    }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.submitted-message {
+  text-align: right;
+  color: rgb(71, 4, 4);
+}
 .apod-creator {
   display: flex;
   flex-direction: column;
