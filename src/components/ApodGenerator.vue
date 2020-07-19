@@ -133,10 +133,10 @@ export default {
   }
 
   .quote-section {
-    width: 350px;
+    width: 400px;
     height: 140px;
     margin-top: 0;
-    max-width: 90vw;
+    max-width: 95vw;
   }
 
   .quote-text {
