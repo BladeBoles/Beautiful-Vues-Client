@@ -31,10 +31,7 @@
     </blockquote>
 
     <div class="inspire-favorite-buttons">
-      <button
-        class="inspiration-button"
-        v-on:click="this.$store.dispatch('fetchQuote')"
-      >Generate Inspiration</button>
+      <button class="inspiration-button" v-on:click="generateInspiration()">Generate Inspiration</button>
       <button v-on:click="makeFavorite()">Add to favorites</button>
     </div>
     <p class="explanation-label">Image Explanation:</p>
@@ -65,6 +62,9 @@ export default {
     generateBeauty: function() {
       this.$store.dispatch("fetchImage", this.currentDate);
     },
+    generateInspiration: function() {
+      this.$store.dispatch("fetchQuote");
+    },
     makeFavorite: function() {
       console.log(this.$store);
       this.currentFavorite = {
@@ -72,7 +72,10 @@ export default {
         author: this.$store.state.currentQuote.author,
         image: this.$store.state.currentImage.url
       };
-      axios.post(`https://polar-ridge-16440.herokuapp.com/favorites`);
+      axios.post(
+        `https://polar-ridge-16440.herokuapp.com/favorites`,
+        this.currentFavorite
+      );
     }
   }
 };
