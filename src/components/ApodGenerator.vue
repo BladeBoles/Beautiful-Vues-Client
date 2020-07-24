@@ -18,9 +18,9 @@
       type="date"
       id="apod-date"
       v-model="currentDate"
-      value="2020-07-14"
+      value="2020-07-20"
       min="1995-06-15"
-      max="2020-07-15"
+      max="2020-07-20"
     />
 
     <button class="beauty-button" v-on:click="generateBeauty()">Generate Beauty</button>
@@ -54,36 +54,37 @@ require("dotenv").config();
 
 export default {
   name: "ApodGenerator",
-  data: function() {
+  data: function () {
     return {
-      currentDate: "2020-07-15"
+      currentDate: "2020-07-20",
     };
   },
   methods: {
-    generateBeauty: function() {
+    generateBeauty: function () {
       this.$store.dispatch("fetchImage", this.currentDate);
     },
-    generateInspiration: function() {
+    generateInspiration: function () {
       this.$store.dispatch("fetchQuote");
     },
-    makeFavorite: function() {
+    makeFavorite: function () {
       this.$store.dispatch("toggleSubmitted");
       this.currentFavorite = {
         quote: this.$store.state.currentQuote.quote,
         author: this.$store.state.currentQuote.author,
-        image: this.$store.state.currentImage.url
+        image: this.$store.state.currentImage.url,
+        owner: this.$store.state.auth.user.id,
       };
-      axios.post(
-        `https://polar-ridge-16440.herokuapp.com/favorites`,
-        this.currentFavorite
-      );
-    }
+      axios.post(`http://localhost:3000/favorites`, this.currentFavorite);
+    },
   },
   computed: {
     favoriteSubmitted() {
       return this.$store.getters.favoriteSubmitted;
-    }
-  }
+    },
+  },
+  created() {
+    console.log(this.$store);
+  },
 };
 </script>
 

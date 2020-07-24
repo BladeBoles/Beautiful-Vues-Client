@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import ApodService from '../services/ApodService'
+import * as auth from './auth.js'
 
 Vue.use(Vuex);
 
@@ -23,6 +24,9 @@ const store = new Vuex.Store({
       quote: "Everything we do impacts someone else's life.",
       author: "Nicolas Cage"
     }
+  },
+  modules: {
+    auth
   },
   mutations: {
     SET_FAVORITES(state, favorites) {
