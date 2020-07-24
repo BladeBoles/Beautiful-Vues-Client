@@ -54,36 +54,33 @@ require("dotenv").config();
 
 export default {
   name: "ApodGenerator",
-  data: function() {
+  data: function () {
     return {
-      currentDate: "2020-07-15"
+      currentDate: "2020-07-15",
     };
   },
   methods: {
-    generateBeauty: function() {
+    generateBeauty: function () {
       this.$store.dispatch("fetchImage", this.currentDate);
     },
-    generateInspiration: function() {
+    generateInspiration: function () {
       this.$store.dispatch("fetchQuote");
     },
-    makeFavorite: function() {
+    makeFavorite: function () {
       this.$store.dispatch("toggleSubmitted");
       this.currentFavorite = {
         quote: this.$store.state.currentQuote.quote,
         author: this.$store.state.currentQuote.author,
-        image: this.$store.state.currentImage.url
+        image: this.$store.state.currentImage.url,
       };
-      axios.post(
-        `https://polar-ridge-16440.herokuapp.com/favorites`,
-        this.currentFavorite
-      );
-    }
+      axios.post(`http://localhost:3000/favorites`, this.currentFavorite);
+    },
   },
   computed: {
     favoriteSubmitted() {
       return this.$store.getters.favoriteSubmitted;
-    }
-  }
+    },
+  },
 };
 </script>
 
