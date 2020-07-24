@@ -81,6 +81,9 @@ export default {
       return this.$store.getters.favoriteSubmitted;
     },
   },
+  created() {
+    console.log(this.$store);
+  },
 };
 </script>
 

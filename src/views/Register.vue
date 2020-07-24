@@ -86,6 +86,7 @@ export default {
   },
   methods: {
     handleRegister() {
+      console.log("Attempting to register");
       this.message = "";
       this.submitted = true;
       this.$validator.validate().then((isValid) => {
