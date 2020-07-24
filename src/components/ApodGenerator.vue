@@ -74,7 +74,10 @@ export default {
         image: this.$store.state.currentImage.url,
         owner: this.$store.state.auth.user.id,
       };
-      axios.post(`http://localhost:3000/favorites`, this.currentFavorite);
+      axios.post(
+        `https://polar-ridge-16440.herokuapp.com/favorites`,
+        this.currentFavorite
+      );
     },
   },
   computed: {
