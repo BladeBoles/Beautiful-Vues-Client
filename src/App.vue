@@ -11,14 +11,14 @@ import NavBar from "@/components/NavBar.vue";
 export default {
   name: "App",
   components: {
-    NavBar
+    NavBar,
   },
-  data: function() {
+  data: function () {
     return {
       toggle: "favorites-creator",
-      favorites: null
+      favorites: null,
     };
-  }
+  },
 };
 </script>
 
