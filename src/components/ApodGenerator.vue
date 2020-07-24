@@ -72,6 +72,7 @@ export default {
         quote: this.$store.state.currentQuote.quote,
         author: this.$store.state.currentQuote.author,
         image: this.$store.state.currentImage.url,
+        owner: this.$store.state.auth.user.id,
       };
       axios.post(`http://localhost:3000/favorites`, this.currentFavorite);
     },
