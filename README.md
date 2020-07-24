@@ -7,6 +7,7 @@ Use NASA's astronomy picture of the day API to generate a beautiful picture with
 Update (07/19/20): Did some tutorials on vuex and vue router over the last 2 days.  Implemented what I learned with some basic routing and a store (with vuex).  Added the ability to remove favorites.  App, although still very simple, is now organized and structured more like a production app on the front end.
 
 
+
 ## User Stories:
 
 1. I can enter a date (or use the current date) and get the NASA apod for that date, along with its explanation.  
@@ -21,7 +22,8 @@ Update (07/19/20): Did some tutorials on vuex and vue router over the last 2 day
 
 6. (Stretch) I can share my favorites
 
-7. (Super Stretch, highly unlikely) I can generate an inspirational meme with favorites
+7. (Stretch, found API!) I can generate an inspirational meme with 
+favorites: api=https://memegen.link/
 
 ## Quotes and Attributions: 
 
