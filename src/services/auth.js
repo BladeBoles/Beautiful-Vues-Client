@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'https://polar-ridge-16440.herokuapp.com/favorites/api/auth/';
+const API_URL = 'https://polar-ridge-16440.herokuapp.com/api/auth/';
 
 class AuthService {
   login(user) {
