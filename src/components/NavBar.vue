@@ -8,14 +8,17 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <h2>
-            <router-link class="nav-link1" :to="{ name: 'favorites'}">Favorites Page</router-link>
+            <router-link class="nav-link1" :to="{ name: 'favorites'}">My Favorites</router-link>
           </h2>
         </li>
         <li class="nav-item">
           <h2>
-            <router-link class="nav-link2" :to="{ name: 'generator'}">Generation Page</router-link>
+            <router-link class="nav-link2" :to="{ name: 'generator'}">Beauty Generator</router-link>
           </h2>
         </li>
+      </ul>
+
+      <!-- <ul class="navbar-nav">
         <li class="nav-item" v-if="showAdminBoard">
           <router-link to="/admin" class="nav-link">Admin Board</router-link>
         </li>
@@ -25,23 +28,23 @@
         <li class="nav-item" v-if="currentUser">
           <router-link class="nav-link" to="/user">User</router-link>
         </li>
-      </ul>
+      </ul>-->
 
-      <div v-if="!currentUser" class="navbar-nav ml-auto">
+      <ul v-if="!currentUser" class="navbar-nav ml-auto">
         <li class="nav-item">
           <router-link to="/register" class="nav-link">Sign Up</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/login" class="nav-link">Login</router-link>
         </li>
-      </div>
+      </ul>
 
       <ul v-if="currentUser" class="navbar-nav ml-auto">
         <li class="nav-item">
-          <router-link to="/profile" class="nav-link">{{ currentUser.username }}</router-link>
+          <router-link to="/profile" class="nav-link">My Profile</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href @click.prevent="logOut">Logout</a>
+          <a class="nav-link" href @click.prevent="logOut">Log Out</a>
         </li>
       </ul>
     </nav>
@@ -78,15 +81,12 @@ export default {
 </script>
 
 <style scoped>
-#nav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+h1 {
+  text-align: center;
 }
 nav {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   padding: 0px;
 }
 .app-title {
@@ -110,5 +110,14 @@ nav {
 }
 .nav-link1 {
   padding-right: 20px;
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: space-between;
+  margin-top: 0;
+  margin-bottom: 5px;
 }
 </style>

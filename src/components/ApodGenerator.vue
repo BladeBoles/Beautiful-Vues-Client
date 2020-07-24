@@ -18,9 +18,9 @@
       type="date"
       id="apod-date"
       v-model="currentDate"
-      value="2020-07-14"
+      value="2020-07-20"
       min="1995-06-15"
-      max="2020-07-15"
+      max="2020-07-20"
     />
 
     <button class="beauty-button" v-on:click="generateBeauty()">Generate Beauty</button>

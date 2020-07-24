@@ -57,6 +57,7 @@
           </div>
         </div>
       </form>
+      <p v-if="this.successful">Registration complete! Please log in.</p>
     </div>
   </div>
 </template>
