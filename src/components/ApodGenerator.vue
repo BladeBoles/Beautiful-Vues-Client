@@ -56,7 +56,7 @@ export default {
   name: "ApodGenerator",
   data: function () {
     return {
-      currentDate: "2020-07-15",
+      currentDate: "2020-07-20",
     };
   },
   methods: {
