@@ -32,7 +32,11 @@
 
     <div class="inspire-favorite-buttons">
       <button v-if="currentUser" v-on:click="makeFavorite()">Add to favorites</button>
-      <p class="no-account" v-if="!currentUser">Register or log in to save your favorites!</p>
+      <p class="no-account" v-if="!currentUser">
+        Please register or login to save your favorites.
+        You can
+        <router-link class="easy-login" :to="{name: 'login'}">login</router-link>with username "guest" and password "password" to have a look around!
+      </p>
     </div>
     <p class="submitted-message" v-show="this.favoriteSubmitted">Submitted new favorite!</p>
     <p class="explanation-label">Image Explanation:</p>

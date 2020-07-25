@@ -3,7 +3,7 @@
     <div class="card card-container">
       <img
         id="profile-img"
-        src="//ssel.gstatic.com/accounts/ui/avatar_2x.png"
+        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
         alt="some kind of avatar"
         class="profile-img-card"
       />
@@ -55,9 +55,12 @@
           <div class="form-group">
             <button class="btn btn-primary btn-block">Sign Up</button>
           </div>
+          <p>
+            <router-link class="easy-login" :to="{name: 'login'}">Log in</router-link>with username "guest" and password "password" to have a look around!
+          </p>
         </div>
       </form>
-      <p v-if="this.successful">Registration complete! Please log in.</p>
+      <p v-if="this.successful">Registration complete! Please login.</p>
     </div>
   </div>
 </template>
@@ -113,4 +116,7 @@ export default {
 </script>
 
 <style scoped>
+label {
+  text-align: center;
+}
 </style>

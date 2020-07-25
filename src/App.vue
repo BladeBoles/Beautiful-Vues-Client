@@ -72,6 +72,17 @@ ul {
   max-width: 90vw;
 }
 
+.easy-login {
+  color: black;
+  text-decoration: underline;
+  font-weight: bold;
+  padding-left: 5px;
+  padding-right: 10px;
+}
+
+.easy-login:hover {
+  text-decoration: 2px solid red underline;
+}
 #app {
   display: flex;
   flex-direction: column;

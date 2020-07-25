@@ -1,9 +1,10 @@
 <template>
   <div class="character-view">
-    <p
-      class="no-account"
-      v-if="!currentUser"
-    >Please login or register an account to create and view favorites!</p>
+    <p class="no-account" v-if="!currentUser">
+      Please login or register an account to create and view favorites.
+      You can
+      <router-link class="easy-login" :to="{name: 'login'}">login</router-link>with username "guest" and password "password" to have a look around!
+    </p>
     <blockquote
       class="favorite-quote"
       v-for="(favorite, index) in this.$store.state.favorites"
@@ -57,7 +58,7 @@ h2 {
 }
 
 p.no-account {
-  color: #fc3d21;
+  color: rgb(71, 4, 4);
   font-style: italic;
 }
 

@@ -38,6 +38,9 @@
           >Password is required!</div>
         </div>
         <div class="form-group">
+          <p
+            class="login-tip"
+          >Log in with username "guest" and password "password" if you just want to look around!</p>
           <button class="btn btn-primary btn-block" :disabled="loading">
             <span v-show="loading" class="spinner-border spinner-border-sm"></span>
             <span>Login</span>
@@ -104,4 +107,8 @@ export default {
 </script>
 
 <style scoped>
+p.login-tip {
+  font-style: italic;
+  color: rgb(71, 4, 4);
+}
 </style>
