@@ -1,7 +1,5 @@
 <template>
   <div class="apod-creator">
-    <div class="generation-button-container"></div>
-
     <a :href="this.$store.state.currentImage.hdurl" target="_blank">
       <img
         :src="this.$store.state.currentImage.url"
@@ -11,6 +9,11 @@
     </a>
 
     <p class="click-image">(Click for high res version in new tab.)</p>
+
+    <blockquote class="quote-section">
+      <p class="quote-text">"{{ this.$store.state.currentQuote.quote }}"</p>
+      <footer class="quote-author">{{ this.$store.state.currentQuote.author }}</footer>
+    </blockquote>
 
     <label class="date-label" for="apod-date">Choose a date:</label>
     <input
@@ -22,17 +25,14 @@
       min="1995-06-15"
       max="2020-07-20"
     />
-
-    <button class="beauty-button" v-on:click="generateBeauty()">Generate Beauty</button>
-
-    <blockquote class="quote-section">
-      <p class="quote-text">"{{ this.$store.state.currentQuote.quote }}"</p>
-      <footer class="quote-author">{{ this.$store.state.currentQuote.author }}</footer>
-    </blockquote>
+    <div class="inspire-beauty-buttons">
+      <button class="beauty-button" v-on:click="generateBeauty()">Generate Beauty</button>
+      <button class="inspiration-button" v-on:click="generateInspiration()">Generate Inspiration</button>
+    </div>
 
     <div class="inspire-favorite-buttons">
-      <button class="inspiration-button" v-on:click="generateInspiration()">Generate Inspiration</button>
-      <button v-on:click="makeFavorite()">Add to favorites</button>
+      <button v-if="currentUser" v-on:click="makeFavorite()">Add to favorites</button>
+      <p class="no-account" v-if="!currentUser">Register or log in to save your favorites!</p>
     </div>
     <p class="submitted-message" v-show="this.favoriteSubmitted">Submitted new favorite!</p>
     <p class="explanation-label">Image Explanation:</p>
@@ -81,6 +81,9 @@ export default {
     },
   },
   computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
     favoriteSubmitted() {
       return this.$store.getters.favoriteSubmitted;
     },
@@ -96,6 +99,11 @@ export default {
 .submitted-message {
   text-align: right;
   color: rgb(71, 4, 4);
+}
+
+p.no-account {
+  color: rgb(71, 4, 4);
+  font-style: italic;
 }
 .apod-creator {
   display: flex;
@@ -129,13 +137,14 @@ export default {
 
 .quote-section {
   width: 400px;
-  height: 140px;
+  height: 180px;
   margin-top: 0;
   max-width: 90vw;
 }
 
 .quote-text {
   font-style: italic;
+  margin-top: 0px;
 }
 
 .explanation-label {
@@ -152,11 +161,15 @@ export default {
   font-size: 0.8em;
   color: rgb(71, 4, 4);
 }
-
-.inspire-favorite-buttons {
-  width: 350px;
+button {
+  width: 150px;
+  max-width: 45vw;
+}
+.inspire-beauty-buttons {
+  width: 400px;
   max-width: 95vw;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 </style>

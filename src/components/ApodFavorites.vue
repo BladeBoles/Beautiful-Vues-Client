@@ -1,5 +1,9 @@
 <template>
   <div class="character-view">
+    <p
+      class="no-account"
+      v-if="!currentUser"
+    >Please login or register an account to create and view favorites!</p>
     <blockquote
       class="favorite-quote"
       v-for="(favorite, index) in this.$store.state.favorites"
@@ -38,6 +42,11 @@ export default {
   mounted() {
     this.$store.dispatch("fetchFavorites");
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
+  },
 };
 </script>
 
@@ -45,6 +54,11 @@ export default {
 <style scoped>
 h2 {
   text-align: center;
+}
+
+p.no-account {
+  color: #fc3d21;
+  font-style: italic;
 }
 
 .delete-button {
