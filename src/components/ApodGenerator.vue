@@ -131,7 +131,7 @@ export default {
   width: 400px;
   height: 140px;
   margin-top: 0;
-  max-width: 95vw;
+  max-width: 90vw;
 }
 
 .quote-text {
@@ -155,6 +155,7 @@ export default {
 
 .inspire-favorite-buttons {
   width: 350px;
+  max-width: 95vw;
   display: flex;
   justify-content: space-between;
 }

@@ -7,8 +7,8 @@
     >
       <h2>Favorite #{{index + 1}}</h2>
       <img class="favorite-image" :src="favorite.image" alt="beauty" />
-      <p class="quote-text">{{ favorite.quote }}</p>
-      <footer>{{ favorite.author }}</footer>
+      <p class="quote-text" v-if="favorite.quote">"{{ favorite.quote }}"</p>
+      <footer v-if="favorite.author">-{{ favorite.author }}</footer>
       <button
         class="delete-button"
         v-on:click="deleteFavorite(favorite._id, index)"
@@ -21,28 +21,32 @@
 import ApodService from "../services/ApodService";
 export default {
   name: "ApodFavorites",
-  data: function() {
+  data: function () {
     return {
-      testFav: "test favorite"
+      testFav: "test favorite",
     };
   },
   methods: {
-    deleteFavorite: async function(id) {
+    deleteFavorite: async function (id) {
       console.log(id);
       await ApodService.deleteFavorite(id)
-        .then(response => console.log(response))
+        .then((response) => console.log(response))
         .then(() => this.$store.dispatch("fetchFavorites"))
-        .catch(error => console.log("There was an error: ", error));
-    }
+        .catch((error) => console.log("There was an error: ", error));
+    },
   },
   mounted() {
     this.$store.dispatch("fetchFavorites");
-  }
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+h2 {
+  text-align: center;
+}
+
 .delete-button {
   margin-top: 10px;
 }
@@ -51,6 +55,9 @@ export default {
 }
 .favorite-quote {
   max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .character-view {
@@ -61,6 +68,7 @@ export default {
 
 img {
   max-height: 50vh;
+  width: 500px;
   max-width: 90vw;
 }
 

@@ -97,13 +97,15 @@ nav {
   padding-bottom: 0px;
 }
 .nav-link1,
-.nav-link2 {
+.nav-link2,
+.nav-link {
   font-size: 0.8em;
   text-decoration: none;
   color: #2d2d2d;
 }
 .nav-link1:hover,
-.nav-link2:hover {
+.nav-link2:hover,
+.nav-link:hover {
   text-decoration: 2px solid #fc3d21 underline;
   margin-top: 0px;
   padding-top: 0px;

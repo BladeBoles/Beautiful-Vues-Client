@@ -23,6 +23,55 @@ export default {
 </script>
 
 <style>
+/* CSS Mini Reset */
+
+html,
+body,
+div,
+form,
+fieldset,
+legend,
+label {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th,
+td {
+  text-align: left;
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+th,
+td,
+caption {
+  font-weight: normal;
+}
+
+img {
+  border: 0;
+}
+
+* {
+  overflow-x: hidden;
+}
+
+ul {
+  padding-left: 0;
+  max-width: 90vw;
+}
+
 #app {
   display: flex;
   flex-direction: column;
@@ -50,7 +99,7 @@ button:hover {
 
 p {
   width: 400px;
-  max-width: 95vw;
+  max-width: 90vw;
 }
 
 .view-favorites-button,
