@@ -137,7 +137,6 @@ p.no-account {
 
 .quote-section {
   width: 400px;
-  height: 180px;
   margin-top: 0;
   max-width: 90vw;
 }
