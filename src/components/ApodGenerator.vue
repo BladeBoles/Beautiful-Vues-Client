@@ -8,36 +8,32 @@
       />
     </a>
 
-    <p class="click-image">(Click for high res version in new tab.)</p>
-
     <blockquote class="quote-section">
       <p class="quote-text">"{{ this.$store.state.currentQuote.quote }}"</p>
       <footer class="quote-author">{{ this.$store.state.currentQuote.author }}</footer>
     </blockquote>
 
+    <div class="date-group">
     <label class="date-label" for="apod-date">Choose a date:</label>
     <input
       class="date-input"
       type="date"
       id="apod-date"
       v-model="currentDate"
-      value="2020-07-20"
       min="1995-06-15"
-      max="2020-07-20"
     />
+    </div>
     <div class="inspire-beauty-buttons">
       <button class="beauty-button" v-on:click="generateBeauty()">Generate Beauty</button>
-      <button class="inspiration-button" v-on:click="generateInspiration()">Generate Inspiration</button>
-    </div>
-
-    <div class="inspire-favorite-buttons">
       <button v-if="currentUser" v-on:click="makeFavorite()">Add to favorites</button>
       <p class="no-account" v-if="!currentUser">
         Please register or login to save your favorites.
         You can
         <router-link class="easy-login" :to="{name: 'login'}">login</router-link>with username "guest" and password "password" to have a look around!
       </p>
+      <!-- <button class="inspiration-button" v-on:click="generateInspiration()">Generate Inspiration</button> -->
     </div>
+
     <p class="submitted-message" v-show="this.favoriteSubmitted">Submitted new favorite!</p>
     <p class="explanation-label">Image Explanation:</p>
     <p class="apod-explanation">{{ this.$store.state.currentImage.explanation }}</p>
@@ -60,16 +56,17 @@ export default {
   name: "ApodGenerator",
   data: function () {
     return {
-      currentDate: "2020-07-20",
+      currentDate: "2020-08-20",
     };
   },
   methods: {
-    generateBeauty: function () {
-      this.$store.dispatch("fetchImage", this.currentDate);
-    },
-    generateInspiration: function () {
+    generateBeauty: async function () {
+      await this.$store.dispatch("fetchImage", this.currentDate);
       this.$store.dispatch("fetchQuote");
     },
+    // generateInspiration: function () {
+      
+    // },
     makeFavorite: function () {
       this.$store.dispatch("toggleSubmitted");
       this.currentFavorite = {
@@ -131,12 +128,19 @@ p.no-account {
 
 .date-label {
   font-size: 1.2em;
-  margin-bottom: 0.5em;
+  margin-right: 1.0em;
+  justify-self: center;
 }
 
 .date-input {
   margin-bottom: 1em;
   font-size: 1.5em;
+}
+
+.date-group {
+  display: flex;
+  justify-content: space-between;
+  
 }
 
 .quote-section {

@@ -14,11 +14,10 @@ const store = new Vuex.Store({
       hdurl: "https://www.placecage.com/500/500",
       explanation: `Although this placeholder image of 
         Nic Cage is surely glorious, choose a date between
-        June 16, 1995 and July 15, 2020 and click the
+        June 16, 1995 and today and click the
         button "Generate Beauty" to see something even
         more beautiful - NASA's Astronomy Picture of the Day
-        for that date.  If you would like an inspirational quote
-        from a STEM figure to go along with it, click "Generate Inspiration." `
+        for that date.`
     },
     currentQuote: {
       quote: "Everything we do impacts someone else's life.",
